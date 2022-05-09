@@ -1,11 +1,22 @@
+const addBtn = document.querySelector('#addBtn');
+addBtn.addEventListener('click', addBookToLibrary);
+
+const newBookBtn = document.querySelector('#newBtn');
+newBookBtn.addEventListener('click', () => popUpForm.style.display = 'block');
+
+const popUpForm = document.getElementById('popUp');
+const closePopUp = document.getElementsByTagName('span')[0];
+closePopUp.addEventListener('click', () => popUpForm.style.display = 'none');
+
 let myLibrary = [];
 let container = document.getElementById('container');
 
-function book (title,author,pages,read){
-    this.title = title
-    this.author = author
-    this.pages = pages
-    this.read = read
+class Book {
+    constructor(title,author,pages){
+    this.title = form.title.value;
+    this.author = form.author.value;
+    this.pages = form.pages.value + ' pages';
+    }
 }
 function CreateCard(item){
     const card = document.createElement('div')
@@ -16,17 +27,16 @@ function CreateCard(item){
     a.textContent = `${item.author}`;
     const p = document.createElement('h3');
     p.textContent = `${item.pages}`;
-    const r = document.createElement('h3');
-    r.textContent = `${item.read}`;
     card.appendChild(t);
     card.appendChild(a);
     card.appendChild(p);
-    card.appendChild(r);
     container.appendChild(card);
 }
 
-function addBookToLibrary(title,author,pages,read){
-    const bookcard = new book(title,author,pages,read);
+function addBookToLibrary(){
+    event.preventDefault();
+    popUpForm.style.display = 'none';
+    const bookcard = new Book(title,author,pages);
     myLibrary.push(bookcard)
     const books = document.querySelectorAll('.book');
     books.forEach(book => container.removeChild(book));
@@ -34,8 +44,4 @@ function addBookToLibrary(title,author,pages,read){
        CreateCard(myLibrary[i]);
    }
 }
-addBookToLibrary('Lotr','JRR',13,'read');
-addBookToLibrary('apple','bear',299,'not read');
-addBookToLibrary('bear','fruit',123,'read');
-addBookToLibrary('car','vr',1223,'read');
 console.log(myLibrary);

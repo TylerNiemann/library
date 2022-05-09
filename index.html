@@ -8,6 +8,24 @@
     <title>library</title>
 </head>
 <body>
+    <div id="top">
+        <button type="button" id="newBtn">+</button>
+    </div>
+    <div class="form-popup" id="popUp">
+        <form id="form" action="#">
+            <span class="close">&times;</span>
+          <label for="title"><b>Title</b></label>
+          <input type="text" name="title" id="title" required>
+      
+          <label for="author"><b>Author</b></label>
+          <input type="text" name="author" id="author" required>
+
+          <label for="pages"><b>Pages</b></label>
+          <input type="number" name="pages" id="pages" required>
+      
+          <button type="submit" class="btn"  form="form" id='addBtn'>Submit</button>
+        </form>
+      </div>
     <div id="container"></div>
     <script src="library.js"></script>
 </body>
