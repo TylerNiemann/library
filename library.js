@@ -12,10 +12,11 @@ let myLibrary = [];
 let container = document.getElementById('container');
 
 class Book {
-    constructor(title,author,pages){
+    constructor(title,author,pages,read){
     this.title = form.title.value;
     this.author = form.author.value;
     this.pages = form.pages.value + ' pages';
+    this.read = form.read.checked;
     }
 }
 function CreateCard(item){
@@ -28,6 +29,15 @@ function CreateCard(item){
     a.textContent = `${item.author}`;
     const p = document.createElement('h3');
     p.textContent = `${item.pages}`;
+    const r = document.createElement('button');
+    card.appendChild(r);
+    if(item.read===false) {
+        r.textContent = 'Not Read';
+        r.style.backgroundColor = '#e04f63';
+    }else {
+        r.textContent = 'Read';
+        r.style.backgroundColor = '#63da63'
+    }
     card.appendChild(t);
     card.appendChild(a);
     card.appendChild(p);
@@ -37,14 +47,18 @@ function CreateCard(item){
 
     removeButton.addEventListener('click', () => {
         myLibrary.splice(myLibrary.indexOf(item),1)
-        clear();
+        clearPerBook();
     });
+    r.addEventListener('click', () => { 
+        item.read = !item.read; 
+        clearPerBook();
+    }); 
 }
 
 function addBookToLibrary(){
     event.preventDefault();
     popUpForm.style.display = 'none';
-    const bookcard = new Book(title,author,pages);
+    const bookcard = new Book(title,author,pages,read);
     myLibrary.push(bookcard)
     clearPerBook();
    form.reset();
