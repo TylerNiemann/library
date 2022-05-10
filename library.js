@@ -19,8 +19,9 @@ class Book {
     }
 }
 function CreateCard(item){
-    const card = document.createElement('div')
+    const card = document.createElement('div');
     card.classList.add('book');
+    card.setAttribute('id', myLibrary.indexOf(item));
     const t= document.createElement('h3');
     t.textContent = `${item.title}`;
     const a = document.createElement('h3');
@@ -30,7 +31,11 @@ function CreateCard(item){
     card.appendChild(t);
     card.appendChild(a);
     card.appendChild(p);
+    const removeButton = document.createElement('button');
+    card.appendChild(removeButton);
     container.appendChild(card);
+
+    removeButton.addEventListener('click', () => container.removeChild(card));
 }
 
 function addBookToLibrary(){
@@ -43,5 +48,6 @@ function addBookToLibrary(){
    for(let i = 0; i < myLibrary.length; i++){
        CreateCard(myLibrary[i]);
    }
+   form.reset();
 }
 console.log(myLibrary);
