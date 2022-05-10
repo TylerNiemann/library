@@ -35,7 +35,10 @@ function CreateCard(item){
     card.appendChild(removeButton);
     container.appendChild(card);
 
-    removeButton.addEventListener('click', () => container.removeChild(card));
+    removeButton.addEventListener('click', () => {
+        myLibrary.splice(myLibrary.indexOf(item),1)
+        clear();
+    });
 }
 
 function addBookToLibrary(){
@@ -43,11 +46,17 @@ function addBookToLibrary(){
     popUpForm.style.display = 'none';
     const bookcard = new Book(title,author,pages);
     myLibrary.push(bookcard)
+    clearPerBook();
+   form.reset();
+}
+
+function clearPerBook(){
     const books = document.querySelectorAll('.book');
     books.forEach(book => container.removeChild(book));
    for(let i = 0; i < myLibrary.length; i++){
        CreateCard(myLibrary[i]);
    }
-   form.reset();
 }
+
+
 console.log(myLibrary);
