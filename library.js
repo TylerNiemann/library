@@ -42,6 +42,7 @@ function CreateCard(item){
     card.appendChild(a);
     card.appendChild(p);
     const removeButton = document.createElement('button');
+    removeButton.textContent = 'Remove';
     card.appendChild(removeButton);
     container.appendChild(card);
 

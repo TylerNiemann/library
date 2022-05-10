@@ -5,10 +5,13 @@ body{
     flex-direction: column;
 }
 #container{
+    overflow: auto;
     align-items: center;
     justify-items: center;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    margin: 50px;
+    gap: 10px;
 }
 .book{
     overflow: auto;
